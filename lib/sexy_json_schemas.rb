@@ -1,0 +1,3 @@
+module SexyJSONSchemas
+  # Your code goes here...
+end
