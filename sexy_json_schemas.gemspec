@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'sexy_json_schemas/version'
 
 Gem::Specification.new do |gem|
   gem.name          = "sexy_json_schemas"
@@ -16,4 +15,11 @@ Gem::Specification.new do |gem|
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
+
+  gem.add_development_dependency("rake", "~> 0.9.2")
+  gem.add_development_dependency("rspec", "~> 2.11.0")
+  gem.add_development_dependency("guard", "~> 1.2.1")
+  gem.add_development_dependency("guard-rspec", "~> 1.1.0")
+  gem.add_development_dependency("fivemat", "~> 1.1.0")
+  gem.add_development_dependency("rb-inotify", "~> 0.8.8")
 end

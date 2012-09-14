@@ -1,4 +1,4 @@
-# SexyJsonSchemas
+# SexyJSONSchemas
 
 A DSL for generating JSON Schemas
 
