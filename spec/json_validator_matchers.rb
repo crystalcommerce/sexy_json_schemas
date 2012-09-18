@@ -1,4 +1,5 @@
 require 'rspec/expectations'
+require 'require_relative'
 require 'json-schema'
 require 'json'
 

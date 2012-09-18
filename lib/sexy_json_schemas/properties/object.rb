@@ -33,8 +33,9 @@ module SexyJSONSchemas
       end
 
       def properties
-        @properties.each_with_object({}) do |property, acc|
+        @properties.inject({}) do |acc, property|
           acc[property.name] = property.as_json
+          acc
         end
       end
 

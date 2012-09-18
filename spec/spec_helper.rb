@@ -15,8 +15,8 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = 'random'
 
-  require_relative 'json_validator_matchers'
+  require File.join(File.dirname(__FILE__), "json_validator_matchers")
   config.include(JSONValidatorMatchers)
 end
 
-require_relative '../lib/sexy_json_schemas'
+require File.join(File.dirname(__FILE__), '..', 'lib', 'sexy_json_schemas')
