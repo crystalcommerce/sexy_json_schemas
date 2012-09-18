@@ -1,6 +1,8 @@
 # SexyJSONSchemas
 
-A DSL for generating JSON Schemas
+A DSL for generating JSON Schemas.
+
+Based on draft 3 of the [zyp-json-schema](http://tools.ietf.org/id/draft-zyp-json-schema-03.html).
 
 ## Installation
 
