@@ -12,10 +12,6 @@ module JSONValidatorMatchers
   matcher :be_valid_json_schema do
     match do |generated_schema|
       JSON::Validator.validate(META_SCHEMA, generated_schema)
-      #result = JSON::Validator.fully_validate(META_SCHEMA, generated_schema)
-      #puts "RESULT FROM #{generated_schema.inspect}:  #{result.inspect}"
-      #result == []
-      #JSON::Validator.validate!(META_SCHEMA, generated_schema)
     end
 
     failure_message_for_should do |schema|
