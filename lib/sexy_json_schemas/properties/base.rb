@@ -23,6 +23,10 @@ module SexyJSONSchemas
           json['required'] = true
         end
 
+        if @options[:enum]
+          json['enum'] = @options[:enum]
+        end
+
         json
       end
     end

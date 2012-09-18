@@ -5,15 +5,7 @@ module SexyJSONSchemas
     attr_reader :name
 
     def_delegators :@core_object,
-                   :integer_property,
-                   :string_property,
-                   :object_property,
-                   :number_property,
-                   :boolean_property,
-                   :null_property,
-                   :any_property,
-                   :union_property,
-                   :array_property
+                    *Properties::Object.property_methods
 
     def initialize(name, options)
       @name        = name

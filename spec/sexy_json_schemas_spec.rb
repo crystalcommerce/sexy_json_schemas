@@ -189,7 +189,15 @@ describe SexyJSONSchemas do
   describe "array properties" do
     subject { Class.new(JSONTestClass) {
       schema "void", :root_element => false do
-        array_property "colors", :string
+        array_property "colors",
+                       :enum => [['blue', true], ['red', false], ['green', true]],
+                       :required => true do
+          string_property :enum => %w[blue red green]
+          boolean_property
+        end
+        array_property "sizes" do
+          integer_property :enum => [1,2,3,4,5,6]
+        end
       end
     }}
 
@@ -199,8 +207,23 @@ describe SexyJSONSchemas do
       "properties" => {
         "colors" => {
           "type" => "array",
+          "required" => true,
+          "enum" => [['blue', true], ['red', false], ['green', true]],
+          "items" => [
+            {
+              "type" => "string",
+              "enum" => %w[blue red green]
+            },
+            {
+              "type" => "boolean"
+            }
+          ]
+        },
+        "sizes" => {
+          "type" => "array",
           "items" => {
-            "type" => "string"
+              "type" => "integer",
+              "enum" => [1,2,3,4,5,6]
           }
         }
       }
