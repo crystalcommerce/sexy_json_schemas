@@ -6,8 +6,8 @@ end
 
 require 'sexy_json_schemas/dsl'
 require 'sexy_json_schemas/properties/base'
-require 'sexy_json_schemas/properties/integer'
 require 'sexy_json_schemas/properties/number'
+require 'sexy_json_schemas/properties/integer'
 require 'sexy_json_schemas/properties/boolean'
 require 'sexy_json_schemas/properties/null'
 require 'sexy_json_schemas/properties/string'

@@ -25,6 +25,10 @@ module SexyJSONSchemas
           json['enum'] = @options[:enum]
         end
 
+        if @options[:format]
+          json['format'] = @options[:format]
+        end
+
         json
       end
     end

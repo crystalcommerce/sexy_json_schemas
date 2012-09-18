@@ -70,6 +70,7 @@ describe SexyJSONSchemas do
     subject { Class.new(JSONTestClass) {
       schema "void", :root_element => false do
         string_property "silly"
+        string_property "when", :format => 'date-time'
       end
     }}
 
@@ -78,6 +79,10 @@ describe SexyJSONSchemas do
       "type" => "object",
       "properties" => {
         "silly" => {
+          "type" => "string"
+        },
+        "when" => {
+          "format" => "date-time",
           "type" => "string"
         }
       }
@@ -89,7 +94,8 @@ describe SexyJSONSchemas do
   describe "number properties" do
     subject { Class.new(JSONTestClass) {
       schema "void", :root_element => false do
-        number_property "beast"
+        number_property "beast", :minimum => 0,
+                                 :maximum => 100
       end
     }}
 
@@ -98,7 +104,9 @@ describe SexyJSONSchemas do
       "type" => "object",
       "properties" => {
         "beast" => {
-          "type" => "number"
+          "type" => "number",
+          "minimum" => 0,
+          "maximum" => 100
         }
       }
     }}
@@ -109,7 +117,7 @@ describe SexyJSONSchemas do
   describe "integer properties" do
     subject { Class.new(JSONTestClass) {
       schema "void", :root_element => false do
-        integer_property "cromulent"
+        integer_property "cromulent", :minimum => 0, :maximum => 100
       end
     }}
 
@@ -118,7 +126,9 @@ describe SexyJSONSchemas do
       "type" => "object",
       "properties" => {
         "cromulent" => {
-          "type" => "integer"
+          "type" => "integer",
+          "minimum" => 0,
+          "maximum" => 100
         }
       }
     }}
@@ -195,6 +205,11 @@ describe SexyJSONSchemas do
           string_property :enum => %w[blue red green]
           boolean_property
         end
+
+        array_property "suppliers" do
+          ref_property "http://example.com/supplier.json"
+        end
+
         array_property "sizes" do
           integer_property :enum => [1,2,3,4,5,6]
         end
@@ -218,6 +233,12 @@ describe SexyJSONSchemas do
               "type" => "boolean"
             }
           ]
+        },
+        "suppliers" => {
+          "type" => "array",
+          "items" => {
+            "$ref" => "http://example.com/supplier.json"
+          }
         },
         "sizes" => {
           "type" => "array",
