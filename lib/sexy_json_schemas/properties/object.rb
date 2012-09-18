@@ -25,8 +25,32 @@ module SexyJSONSchemas
         @properties << Properties::Integer.new(*args)
       end
 
+      def number_property(*args)
+        @properties << Properties::Number.new(*args)
+      end
+
+      def boolean_property(*args)
+        @properties << Properties::Boolean.new(*args)
+      end
+
+      def null_property(*args)
+        @properties << Properties::Null.new(*args)
+      end
+
       def string_property(*args)
         @properties << Properties::String.new(*args)
+      end
+
+      def any_property(*args)
+        @properties << Properties::Any.new(*args)
+      end
+
+      def union_property(*args)
+        @properties << Properties::Union.new(*args)
+      end
+
+      def array_property(*args)
+        @properties << Properties::Array.new(*args)
       end
 
       def object_property(*args, &block)

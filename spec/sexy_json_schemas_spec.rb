@@ -10,18 +10,6 @@ describe SexyJSONSchemas do
     end
   end
 
-  class Product
-    include SexyJSONSchemas
-
-    schema "producto", :root_element => false do
-      string_property "name"
-
-      object_property "attributes", :required => true do
-        string_property "color", :enum => %w[red blue green]
-      end
-    end
-  end
-
   describe Money do
     subject { Money }
 
@@ -48,6 +36,30 @@ describe SexyJSONSchemas do
     end
   end
 
+  class Product
+    include SexyJSONSchemas
+
+    schema "producto", :root_element => false do
+      string_property "name"
+
+      object_property "attributes", :required => true do
+        string_property "color", :enum => %w[red blue green]
+      end
+
+      number_property "weight"
+
+      boolean_property "is_preorder"
+
+      null_property "spaceghost"
+
+      any_property "whatever"
+
+      union_property "maybe", [:null, :boolean]
+
+      array_property "links", :string
+    end
+  end
+
   describe Product do
     subject { Product }
 
@@ -60,6 +72,27 @@ describe SexyJSONSchemas do
         "properties" => {
           "name" => {
             "type" => "string"
+          },
+          "weight" => {
+            "type" => "number"
+          },
+          "is_preorder" => {
+            "type" => "boolean"
+          },
+          "spaceghost" => {
+            "type" => "null"
+          },
+          "whatever" => {
+            "type" => "any"
+          },
+          "maybe" => {
+            "type" => ['null', 'boolean']
+          },
+          "links" => {
+            "type" => "array",
+            "items" => {
+              "type" => "string"
+            }
           },
           "attributes" => {
             "type" => "object",
