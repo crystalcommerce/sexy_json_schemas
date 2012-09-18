@@ -4,6 +4,10 @@ JSONTestClass = Class.new {
   include SexyJSONSchemas
 }
 
+shared_examples_for "valid schema generator" do
+  its(:as_json) { should be_valid_json_schema }
+end
+
 describe SexyJSONSchemas do
   class Money
     include SexyJSONSchemas
@@ -38,6 +42,8 @@ describe SexyJSONSchemas do
         }
       }
     end
+
+    it_should_behave_like "valid schema generator"
   end
 
   describe "null properties" do
@@ -56,6 +62,8 @@ describe SexyJSONSchemas do
         }
       }
     }}
+
+    it_should_behave_like "valid schema generator"
   end
 
   describe "string properties" do
@@ -74,6 +82,8 @@ describe SexyJSONSchemas do
         }
       }
     }}
+
+    it_should_behave_like "valid schema generator"
   end
 
   describe "number properties" do
@@ -92,6 +102,8 @@ describe SexyJSONSchemas do
         }
       }
     }}
+
+    it_should_behave_like "valid schema generator"
   end
 
   describe "integer properties" do
@@ -110,6 +122,8 @@ describe SexyJSONSchemas do
         }
       }
     }}
+
+    it_should_behave_like "valid schema generator"
   end
 
   describe "any properties" do
@@ -128,6 +142,8 @@ describe SexyJSONSchemas do
         }
       }
     }}
+
+    it_should_behave_like "valid schema generator"
   end
 
   describe "boolean properties" do
@@ -146,6 +162,8 @@ describe SexyJSONSchemas do
         }
       }
     }}
+
+    it_should_behave_like "valid schema generator"
   end
 
   describe "union properties" do
@@ -164,6 +182,8 @@ describe SexyJSONSchemas do
         }
       }
     }}
+
+    it_should_behave_like "valid schema generator"
   end
 
   describe "array properties" do
@@ -185,6 +205,8 @@ describe SexyJSONSchemas do
         }
       }
     }}
+
+    it_should_behave_like "valid schema generator"
   end
 
   describe "object properties" do
@@ -212,5 +234,7 @@ describe SexyJSONSchemas do
         }
       }
     }}
+
+    it_should_behave_like "valid schema generator"
   end
 end

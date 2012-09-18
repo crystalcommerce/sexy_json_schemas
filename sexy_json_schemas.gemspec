@@ -22,4 +22,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency("guard-rspec", "~> 1.1.0")
   gem.add_development_dependency("fivemat", "~> 1.1.0")
   gem.add_development_dependency("rb-inotify", "~> 0.8.8")
+  gem.add_development_dependency("json-schema", "~> 1.0.9")
 end

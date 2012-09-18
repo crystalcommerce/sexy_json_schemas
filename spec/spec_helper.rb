@@ -14,6 +14,9 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = 'random'
+
+  require_relative 'json_validator_matchers'
+  config.include(JSONValidatorMatchers)
 end
 
 require_relative '../lib/sexy_json_schemas'
