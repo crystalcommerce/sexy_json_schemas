@@ -1,26 +1,18 @@
 module SexyJSONSchemas
   module Properties
-    class Object
-      attr_reader :name
+    class Object < Base
+      type "object"
 
       def initialize(name, options = {}, &block)
-        @name = name
-        @options = options
+        super(name, options)
         @properties = []
-        instance_eval(&block)
+        instance_eval(&block) if block_given?
       end
 
       def as_json
-        json = {
-          "type" => "object",
-          "properties" => properties
-        }
-
-        if @options[:required]
-          json['required'] = true
+        super.tap do |json|
+          json["properties"] = properties
         end
-
-        json
       end
 
       def properties

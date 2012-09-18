@@ -1,49 +1,49 @@
 module SexyJSONSchemas
   class SchemaDefinition
-    attr_reader :name, :options
+    extend Forwardable
+
+    attr_reader :name
+
+    def_delegators :@core_object,
+                   :integer_property,
+                   :string_property,
+                   :object_property
 
     def initialize(name, options)
-      @name = name
-      @options = options
-      @properties = []
+      @name        = name
+      @root_element = options.fetch(:root_element, true)
+      @core_object = Properties::Object.new(name, options)
     end
 
     def as_json
-        json = {
-          "name" => name,
-          "type" => "object",
-          "properties" => {}
-        }
+      json = @core_object.as_json
 
+      if root_element?
+        json = wrap_in_root(json)
+      end
 
-        if @options.fetch(:root_element, true)
-          json["properties"][name] = {
-            "type" => "object",
-            "properties" => properties
-          }
-        else
-          json["properties"] = properties
-        end
+      json['name'] = name
 
-        json
+      json
     end
+
+    private
 
     def properties
-      @properties.each_with_object({}) do |property, acc|
-        acc[property.name] = property.as_json
-      end
+      @core_object.as_json
     end
 
-    def integer_property(*args)
-      @properties << Properties::Integer.new(*args)
+    def root_element?
+      @root_element
     end
 
-    def string_property(*args)
-      @properties << Properties::String.new(*args)
-    end
-
-    def object_property(*args, &block)
-      @properties << Properties::Object.new(*args, &block)
+    def wrap_in_root(json)
+      {
+        "type" => "object",
+        "properties" => {
+          name => json
+        }
+      }
     end
   end
 end
