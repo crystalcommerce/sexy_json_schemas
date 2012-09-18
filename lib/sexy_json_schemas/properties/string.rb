@@ -1,7 +1,9 @@
 module SexyJSONSchemas
   module Properties
     class String < Base
-      type "string"
+      def type
+        "string"
+      end
     end
   end
 end

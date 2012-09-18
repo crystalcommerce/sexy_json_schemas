@@ -1,7 +1,9 @@
 module SexyJSONSchemas
   module Properties
     class Any < Base
-      type "any"
+      def type
+        "any"
+      end
     end
   end
 end

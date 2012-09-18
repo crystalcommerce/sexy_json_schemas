@@ -1,7 +1,9 @@
 module SexyJSONSchemas
   module Properties
     class Null < Base
-      type "null"
+      def type
+        "null"
+      end
     end
   end
 end

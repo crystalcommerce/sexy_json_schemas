@@ -1,7 +1,9 @@
 module SexyJSONSchemas
   module Properties
     class Boolean < Base
-      type "boolean"
+      def type
+        "boolean"
+      end
     end
   end
 end

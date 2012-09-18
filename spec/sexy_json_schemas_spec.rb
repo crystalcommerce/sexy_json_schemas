@@ -260,4 +260,24 @@ describe SexyJSONSchemas do
 
     it_should_behave_like "valid schema generator"
   end
+
+  describe "$ref properties" do
+    subject { Class.new(JSONTestClass) {
+      schema "void", :root_element => false do
+        ref_property "money", "http://example.com/money.json"
+      end
+    }}
+
+    its(:as_json) { should == {
+      "name" => "void",
+      "type" => "object",
+      "properties" => {
+        "money" => {
+          "$ref" => "http://example.com/money.json"
+        }
+      }
+    }}
+
+    it_should_behave_like "valid schema generator"
+  end
 end

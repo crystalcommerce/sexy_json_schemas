@@ -1,12 +1,6 @@
 module SexyJSONSchemas
   module Properties
     class Base
-      def self.type(attr)
-        define_method("type") do
-          attr
-        end
-      end
-
       attr_reader :name
 
       def initialize(name, options = {})
@@ -14,10 +8,14 @@ module SexyJSONSchemas
         @options = options
       end
 
+      def type
+        nil
+      end
+
       def as_json
-        json = {
-          "type" => type
-        }
+        json = { }
+
+        json["type"] = type if type
 
         if @options[:required]
           json['required'] = true

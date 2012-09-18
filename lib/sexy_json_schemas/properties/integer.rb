@@ -1,7 +1,9 @@
 module SexyJSONSchemas
   module Properties
     class Integer < Base
-      type "integer"
+      def type
+        "integer"
+      end
     end
   end
 end

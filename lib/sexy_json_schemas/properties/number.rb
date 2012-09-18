@@ -1,7 +1,9 @@
 module SexyJSONSchemas
   module Properties
     class Number < Base
-      type "number"
+      def type
+        "number"
+      end
     end
   end
 end

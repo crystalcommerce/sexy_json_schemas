@@ -13,7 +13,9 @@ module SexyJSONSchemas
         define_property_delegator(property)
       end
 
-      type "array"
+      def type
+        "array"
+      end
 
       def initialize(*args, &block)
         super(*args)

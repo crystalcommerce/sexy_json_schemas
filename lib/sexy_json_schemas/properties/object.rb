@@ -1,7 +1,9 @@
 module SexyJSONSchemas
   module Properties
     class Object < Base
-      type "object"
+      def type
+        "object"
+      end
 
       def self.property_methods
         [
@@ -13,7 +15,8 @@ module SexyJSONSchemas
           :null_property,
           :any_property,
           :union_property,
-          :array_property
+          :array_property,
+          :ref_property
         ]
       end
 
@@ -65,6 +68,10 @@ module SexyJSONSchemas
 
       def array_property(*args, &block)
         @properties << Properties::Array.new(*args, &block)
+      end
+
+      def ref_property(*args, &block)
+        @properties << Properties::Ref.new(*args, &block)
       end
 
       def object_property(*args, &block)
