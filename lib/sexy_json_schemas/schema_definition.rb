@@ -9,16 +9,23 @@ module SexyJSONSchemas
     end
 
     def as_json
-      {
-        "name" => name,
-        "type" => "object",
-        "properties" => {
-          name => {
+        json = {
+          "name" => name,
+          "type" => "object",
+          "properties" => {}
+        }
+
+
+        if @options.fetch(:root_element, true)
+          json["properties"][name] = {
             "type" => "object",
             "properties" => properties
           }
-        }
-      }
+        else
+          json["properties"] = properties
+        end
+
+        json
     end
 
     def properties
@@ -33,6 +40,10 @@ module SexyJSONSchemas
 
     def string_property(*args)
       @properties << Properties::String.new(*args)
+    end
+
+    def object_property(*args, &block)
+      @properties << Properties::Object.new(*args, &block)
     end
   end
 end

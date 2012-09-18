@@ -9,9 +9,19 @@ module SexyJSONSchemas
       end
 
       def as_json
-        {
+        json = {
           "type" => "string"
         }
+
+        if @options[:enum]
+          json['enum'] = @options[:enum]
+        end
+
+        if @options[:required]
+          json['required'] = true
+        end
+
+        json
       end
     end
   end
