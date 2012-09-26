@@ -29,6 +29,10 @@ module SexyJSONSchemas
           json['format'] = @options[:format]
         end
 
+        if @options[:description]
+          json['description'] = @options[:description]
+        end
+
         json
       end
     end

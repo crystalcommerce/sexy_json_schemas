@@ -14,7 +14,7 @@ describe SexyJSONSchemas do
 
     schema "money" do
       integer_property "cents", :required => true
-      string_property "currency"
+      string_property "currency", :description => "ISO currency code"
     end
   end
 
@@ -35,7 +35,8 @@ describe SexyJSONSchemas do
                 "required" => true
               },
               "currency" => {
-                "type" => "string"
+                "type" => "string",
+                "description" => "ISO currency code"
               }
             }
           }

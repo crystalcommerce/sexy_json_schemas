@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |gem|
   gem.name          = "sexy_json_schemas"
-  gem.version       = "0.0.4"
+  gem.version       = "0.0.5"
   gem.authors       = ["Donald Plummer", "Michael Xavier"]
   gem.email         = ["donald@crystalcommerce.com", "xavier@crystalcommerce.com"]
   gem.description   = %q{A DSL for generating JSON Schemas}
