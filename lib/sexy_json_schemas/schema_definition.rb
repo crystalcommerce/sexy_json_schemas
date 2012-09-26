@@ -9,7 +9,7 @@ module SexyJSONSchemas
 
     def initialize(name, options)
       @name        = name
-      @root_element = options.fetch(:root_element, true)
+      @root_element = options.fetch(:root_element, name)
       @core_object = Properties::Object.new(name, options)
     end
 
@@ -39,7 +39,7 @@ module SexyJSONSchemas
       {
         "type" => "object",
         "properties" => {
-          name => json
+          @root_element => json
         }
       }
     end

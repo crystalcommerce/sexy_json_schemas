@@ -301,4 +301,24 @@ describe SexyJSONSchemas do
 
     it_should_behave_like "valid schema generator"
   end
+
+  describe "overriding root element" do
+    subject { Class.new(JSONTestClass) {
+      schema "void", :root_element => "wat" do
+      end
+    }}
+
+    its(:as_json) { should == {
+      "name" => "void",
+      "type" => "object",
+      "properties" => {
+        "wat" => {
+          "type" => "object",
+          "properties" => {}
+        }
+      }
+    }}
+
+    it_should_behave_like "valid schema generator"
+  end
 end
