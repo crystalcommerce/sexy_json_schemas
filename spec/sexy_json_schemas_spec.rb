@@ -322,4 +322,27 @@ describe SexyJSONSchemas do
 
     it_should_behave_like "valid schema generator"
   end
+
+  describe "dynamic calls in schema definition" do
+    before(:each) do
+
+    end
+    subject { }
+
+    it "dynamically calls the schema" do
+      global_var = "bob"
+      subject = Class.new(JSONTestClass) {
+        schema "void", :root_element => "wat" do
+          ref_property "name", global_var
+        end
+      }
+      subject.as_json['properties']['wat']['properties']['name'].
+        should == {"$ref" => "bob"}
+
+      global_var = "fred"
+
+      subject.as_json['properties']['wat']['properties']['name'].
+        should == {"$ref" => "fred"}
+    end
+  end
 end
