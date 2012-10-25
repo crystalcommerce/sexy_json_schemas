@@ -286,7 +286,8 @@ describe SexyJSONSchemas do
   describe "$ref properties" do
     subject { Class.new(JSONTestClass) {
       schema "void", :root_element => false do
-        ref_property "money", "http://example.com/money.json"
+        ref_property "money", "http://example.com/money.json",
+                              :description => "Fun"
       end
     }}
 
@@ -295,7 +296,8 @@ describe SexyJSONSchemas do
       "type" => "object",
       "properties" => {
         "money" => {
-          "$ref" => "http://example.com/money.json"
+          "$ref" => "http://example.com/money.json",
+          "description" => "Fun"
         }
       }
     }}

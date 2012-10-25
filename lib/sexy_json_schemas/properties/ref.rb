@@ -7,7 +7,13 @@ module SexyJSONSchemas
       end
 
       def as_json
-        {"$ref" => @schema}
+        json = { "$ref" => @schema }
+
+        if @options[:description]
+          json['description'] = @options[:description]
+        end
+
+        json
       end
     end
   end
